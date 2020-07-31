@@ -3,7 +3,9 @@
 #include <iostream>
 #include <stack>
 
-TreeNode* _reConstructBinaryTree(vector<int>::iterator pre_begin, vector<int>::iterator pre_end, vector<int>::iterator vin_begin, vector<int>::iterator vin_end);
+TreeNode* _reConstructBinaryTree(vector<int>::iterator, vector<int>::iterator, vector<int>::iterator, vector<int>::iterator);
+void _movingCount(int, int, int, int, int, int&, int**);
+bool moveIn(int, int, int);
 
 bool Solution::Find(int target, vector<vector<int>> array)
 {
@@ -194,4 +196,151 @@ int Solution::minNumberInRotateArray(vector<int> rotateArray)
 
 	}
 	return rotateArray[right];
+}
+
+int Solution::Fibonacci(int n)
+{
+	if (n < 0)
+		return NULL;
+	int result[2] = { 0, 1 };
+	if (n < 2)
+		return result[n];
+	int tmp = 0;
+	for (int i = 2; i <= n; ++i)
+	{
+		tmp = result[1];
+		result[1] += result[0];
+		result[0] = tmp;
+	}
+	return result[1];
+}
+
+int Solution::jumpFloor(int number)
+{
+	if (number <= 0)
+		return 0;
+	int result[2] = { 1, 2 };
+	if (number <= 2)
+		return result[number - 1];
+	int tmp = 0;
+	for (int i = 3; i <= number; ++i)
+	{
+		tmp = result[1];
+		result[1] += result[0];
+		result[0] = tmp;
+	}
+	return result[1];
+		
+}
+
+int Solution::jumpFloorII(int number)
+{
+	if (number <= 0)
+		return 0;
+	//if (number == 1)
+	//	return 1;
+	//int result = 1;
+	//for (int i = 2; i <= number; ++i)
+	//	result *= 2;
+
+	int result = 1;
+
+	return result << (number - 1);
+}
+
+int Solution::rectCover(int number) {
+	if (number <= 0)
+		return 0;
+	int result[2] = { 1,2 };
+	if (number <= 2)
+		return result[number - 1];
+	int tmp = 0;
+	for (int i = 3; i <= number; ++i)
+	{
+		tmp = result[1];
+		result[1] += result[0];
+		result[0] = tmp;
+	}
+	return result[1];
+}
+
+double Solution::Power(double base, int exponent)
+{
+	if (base == 0)
+		return 0;
+	if (exponent == 0)
+		return 1;
+	double result = 1;
+	if (exponent > 0)
+	{
+		for (int i = 1; i <= exponent; ++i)
+			result *= base;
+	}
+	else
+	{
+		for (int i = 1; i <= -exponent; ++i)
+			result *= (1 / base);
+	}
+	return result;
+}
+
+int Solution::movingCount(int threshold, int rows, int cols)
+{
+	int result = 0;
+	int** map = new int*[rows];
+	for (int i = 0; i < rows; ++i)
+		map[i] = new int[cols]();
+	_movingCount(0, 0, threshold, rows-1, cols-1, result, map);
+	return result;
+}
+
+void _movingCount(int i, int j, int threshold, int rows, int cols, int& result, int** map)
+{
+	if (!moveIn(i, j, threshold) || i > rows || j > cols || map[i][j])
+		return;
+	++result;
+	map[i][j] = 1;
+	_movingCount(i + 1, j, threshold, rows, cols, result, map);
+	_movingCount(i, j+1, threshold, rows, cols, result, map);
+}
+
+bool moveIn(int i, int j, int thres)
+{
+	int sum = 0;
+	while (i)
+	{
+		sum += i % 10;
+		i /= 10;
+	}
+	while (j)
+	{
+		sum += j % 10;
+		j /= 10;
+	}
+
+	return sum <= thres;
+}
+
+int Solution::movingCount(int threshold, int rows, int cols, bool dfs)
+{
+	int result = 0;
+	int** map = new int* [rows];
+	for (int i = 0; i < rows; ++i)
+		map[i] = new int[cols]();
+	for (int i = 0; i < rows; ++i)
+	{
+		if (rows <= threshold)
+			map[i][0] = 1;
+		else
+			map[i][0] = 0;
+	}
+
+	for (int i = 0; i < cols; ++i)
+	{
+		if (cols <= threshold)
+			map[0][i] = 1;
+		else
+			map[0][0] = 0;
+	}
+	return result;
 }

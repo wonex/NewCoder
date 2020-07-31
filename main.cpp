@@ -12,7 +12,7 @@ int main()
 	Solution solu;
 
 	////No.1
-	////输入
+	////input
 	//int a, row, col, target;
 	//cin >> target;
 	//cin >> row >> col;
@@ -32,12 +32,12 @@ int main()
 	//		cout << (*i)[j] << ' ';
 	//	cout << endl;
 	//}
-	////输入
+	////input
 	//
 	//cout << solu.Find(target, vec) << endl;
 	
 	////No.2
-	////输入
+	////input
 	//int length;
 	//cin >> length;
 	//getchar();
@@ -47,25 +47,40 @@ int main()
 	//char c;
 	//while ((c = getchar()) != '\n') { *(strc++) = c; };
 	//*strc='\0';
-	////输入
+	////input
 
 	//solu.replaceSpace(str, length);
 	//str = 0;
 	//strc = 0;
 	//delete [] str;
 
-	//No.3
-	Stack a;
-	int val;
-	while (cin >> val)
-	{
-		if (val == -1)
-			break;
-		if (val == 0)
-			cout << a.pop() << endl;
-		else
-			a.push(val);
-	}
+	////No.3
+	////test
+	//Stack a;
+	//int val;
+	//while (cin >> val)
+	//{
+	//	if (val == -1)
+	//		break;
+	//	if (val == 0)
+	//		cout << a.pop() << endl;
+	//	else
+	//		a.push(val);
+	//}
+	//Queue b;
+	//int val;
+	//while (cin >> val)
+	//{
+	//	if (val == -1)
+	//		break;
+	//	if (val == 0)
+	//		cout << b.pop() << endl;
+	//	else
+	//		b.push(val);
+	//}
+	////test
+	
+	cout << solu.movingCount(3, 5, 5) << endl;
 	system("pause");
 	return 0;
 }

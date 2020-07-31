@@ -38,6 +38,13 @@ public:
 	vector<int> printListFromTailToHead(ListNode* head);
 	TreeNode* reConstructBinaryTree(vector<int> pre, vector<int> vin);
 	int minNumberInRotateArray(vector<int> rotateArray);
+	int Fibonacci(int n);
+	int jumpFloor(int number);
+	int jumpFloorII(int number);
+	int rectCover(int number);
+	double Power(double base, int exponent);
+	int movingCount(int threshold, int rows, int cols);
+	int movingCount(int threshold, int rows, int cols, bool dfs);
 };
 
 class Queue
